@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>São Tomé Ecoturismo Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#030303;
+color:white;
+overflow-x:hidden;
+}
+
+/* SCROLL */
+
+body::-webkit-scrollbar{
+width:10px;
+}
+
+body::-webkit-scrollbar-thumb{
+background:#00ff99;
+border-radius:20px;
+}
+
+/* IMAGES */
+
+img{
+image-rendering:auto;
+}
+
+/* LOADER */
+
+.loader{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+}
+
+.loader h1{
+font-size:5rem;
+font-weight:900;
+color:#00ff99;
+animation:pulse 1.5s infinite;
+}
+
+.loader p{
+margin-top:20px;
+letter-spacing:5px;
+color:#aaa;
+}
+
+@keyframes pulse{
+0%{opacity:0.3;}
+50%{opacity:1;}
+100%{opacity:0.3;}
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(15px);
+z-index:9999;
+border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+font-size:2rem;
+font-weight:900;
+color:#00ff99;
+}
+
+.navbar nav{
+display:flex;
+gap:30px;
+}
+
+.navbar a{
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.3s;
+}
+
+.navbar a:hover{
+color:#00ff99;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:black;
+overflow:hidden;
+}
+
+.hero img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0.7;
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+}
+
+.hero-content{
+position:relative;
+z-index:10;
+max-width:1000px;
+padding:20px;
+}
+
+.hero-small{
+letter-spacing:8px;
+text-transform:uppercase;
+color:#00ff99;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:clamp(4rem,10vw,8rem);
+font-weight:900;
+line-height:1;
+}
+
+.hero h2{
+font-size:clamp(2rem,5vw,4rem);
+margin-top:20px;
+color:#00ff99;
+}
+
+.hero p{
+margin-top:30px;
+line-height:2;
+font-size:1.1rem;
+color:#ddd;
+}
+
+.hero-buttons{
+margin-top:45px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* BUTTONS */
+
+.btn{
+padding:18px 35px;
+border:none;
+border-radius:999px;
+font-weight:700;
+cursor:pointer;
+transition:0.4s;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+}
+
+.btn-primary{
+background:#00ff99;
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-5px);
+background:white;
+}
+
+.btn-secondary{
+background:transparent;
+border:1px solid rgba(255,255,255,0.2);
+color:white;
+}
+
+.btn-secondary:hover{
+background:white;
+color:black;
+}
+
+/* SECTION */
+
+.section{
+padding:130px 7%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:80px;
+}
+
+.section-title h2{
+font-size:clamp(3rem,7vw,6rem);
+font-weight:900;
+margin-bottom:20px;
+}
+
+.section-title p{
+max-width:900px;
+margin:auto;
+line-height:2;
+color:#aaa;
+}
+
+/* CARD */
+
+.card{
+background:#111;
+border-radius:35px;
+overflow:hidden;
+margin-bottom:60px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.5s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 60px rgba(0,255,153,0.15);
+}
+
+.card img{
+width:100%;
+height:auto;
+max-height:600px;
+object-fit:contain;
+background:black;
+display:block;
+transition:0.5s;
+}
+
+.card:hover img{
+filter:brightness(1.08);
+}
+
+.card-content{
+padding:35px;
+}
+
+.card-content h3{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.card-content p{
+line-height:2;
+color:#ccc;
+font-size:1.05rem;
+}
+
+/* BUTTONS AREA */
+
+.buttons{
+margin-top:30px;
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.buttons a,
+.buttons button{
+padding:15px 20px;
+border:none;
+border-radius:999px;
+background:#00ff99;
+color:black;
+font-weight:700;
+cursor:pointer;
+text-decoration:none;
+transition:0.4s;
+}
+
+.buttons a:hover,
+.buttons button:hover{
+transform:translateY(-3px);
+}
+
+/* VIDEO */
+
+.video-box iframe{
+width:100%;
+height:650px;
+border:none;
+border-radius:35px;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.gallery img{
+width:100%;
+height:auto;
+object-fit:contain;
+border-radius:30px;
+background:black;
+transition:0.5s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+/* MAP */
+
+.map-box iframe{
+width:100%;
+height:500px;
+border:none;
+border-radius:35px;
+}
+
+/* TIMELINE */
+
+.timeline{
+display:grid;
+gap:30px;
+margin-top:40px;
+}
+
+.timeline-item{
+background:#111;
+padding:35px;
+border-radius:30px;
+border-left:5px solid #00ff99;
+}
+
+.timeline-item h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+padding:80px 7%;
+text-align:center;
+background:black;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+footer h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+footer p{
+max-width:850px;
+margin:auto;
+line-height:2;
+color:#aaa;
+}
+
+/* TOP BUTTON */
+
+#topBtn{
+position:fixed;
+right:25px;
+bottom:25px;
+width:70px;
+height:70px;
+border:none;
+border-radius:50%;
+background:#00ff99;
+color:black;
+font-size:25px;
+cursor:pointer;
+display:none;
+z-index:999;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.navbar nav{
+display:none;
+}
+
+.hero p{
+font-size:1rem;
+}
+
+.video-box iframe{
+height:350px;
+}
+
+.card-content h3{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+<h1>São Tomé</h1>
+<p>ECOTURISMO PREMIUM</p>
+</div>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+São Tomé Ecoturismo
+</div>
+
+<nav>
+<a href="#obo">Obô</a>
+<a href="#cascata">Cascata</a>
+<a href="#novamoca">Nova Moca</a>
+<a href="#hospedagem">Hospedagem</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="https://i.ibb.co/ymJVypyy/imagem.jpg">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<p class="hero-small">
+EXPLORE O PARAÍSO TROPICAL
+</p>
+
+<h1>São Tomé</h1>
+
+<h2>
+Parque Obô • Cascatas • Nova Moca
+</h2>
+
+<p>
+Descubra florestas tropicais exuberantes,
+cascatas cinematográficas, biodiversidade rara,
+trilhas ecológicas e paisagens naturais únicas
+em São Tomé e Príncipe.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#obo" class="btn btn-primary">
+Explorar Obô
+</a>
+
+<a href="#video" class="btn btn-secondary">
+Ver Vídeo
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VIDEO -->
+
+<section class="section" id="video">
+
+<div class="section-title reveal">
+
+<h2>Vídeo do Parque Obô</h2>
+
+<p>
+Explore São Tomé através de vídeos cinematográficos.
+</p>
+
+</div>
+
+<div class="video-box reveal">
+
+<iframe
+src="https://www.youtube.com/embed/8L8lT5z8XnA"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</section>
+
+<!-- OBO -->
+
+<section class="section" id="obo">
+
+<div class="section-title reveal">
+
+<h2>Parque Natural Obô</h2>
+
+<p>
+Uma das florestas tropicais mais importantes de África,
+repleta de biodiversidade, aves raras e trilhas ecológicas.
+</p>
+
+</div>
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/C5wCJjNv/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Floresta Tropical Protegida</h3>
+
+<p>
+O Parque Natural Obô é um dos maiores tesouros ecológicos
+de São Tomé e Príncipe. O local possui espécies endêmicas,
+montanhas cobertas por floresta tropical, trilhas naturais,
+rios e paisagens cinematográficas.
+</p>
+
+<div class="buttons">
+
+<button onclick="copyContact('+239900000')">
+📞 Copiar Contacto
+</button>
+
+<a href="https://maps.google.com/?q=Parque+Natural+Obô+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+<a href="https://www.youtube.com/results?search_query=Parque+Natural+Obô"
+target="_blank">
+
+▶ Vídeos
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CASCATA -->
+
+<section class="section" id="cascata">
+
+<div class="section-title reveal">
+
+<h2>Cascata São Nicolau</h2>
+
+<p>
+Uma das cascatas mais famosas do país,
+rodeada por floresta tropical exuberante.
+</p>
+
+</div>
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/xKGxddz6/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Cascata Tropical</h3>
+
+<p>
+A Cascata São Nicolau oferece água cristalina,
+vegetação intensa e um ambiente refrescante
+perfeito para turismo ecológico e fotografia.
+</p>
+
+<div class="buttons">
+
+<button onclick="copyContact('+239911111')">
+📞 Copiar Contacto
+</button>
+
+<a href="https://maps.google.com/?q=Cascata+São+Nicolau+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+<a href="https://www.youtube.com/results?search_query=Cascata+São+Nicolau"
+target="_blank">
+
+▶ Vídeos
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NOVA MOCA -->
+
+<section class="section" id="novamoca">
+
+<div class="section-title reveal">
+
+<h2>Nova Moca</h2>
+
+<p>
+Região montanhosa histórica conhecida pelo café,
+clima fresco e vistas panorâmicas.
+</p>
+
+</div>
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/tT3PHHvC/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Montanhas e Cultura</h3>
+
+<p>
+Nova Moca é uma das regiões mais altas
+de São Tomé e possui ligação histórica
+às antigas roças de café e turismo ecológico.
+</p>
+
+<div class="buttons">
+
+<button onclick="copyContact('+239922222')">
+📞 Copiar Contacto
+</button>
+
+<a href="https://maps.google.com/?q=Nova+Moca+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+<a href="https://www.youtube.com/results?search_query=Nova+Moca+São+Tomé"
+target="_blank">
+
+▶ Vídeos
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="section">
+
+<div class="section-title reveal">
+
+<h2>Espécies e Natureza</h2>
+
+<p>
+Conheça parte da biodiversidade tropical do Obô.
+</p>
+
+</div>
+
+<div class="gallery reveal">
+
+<img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1501706362039-c6e80948f11f?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<!-- MAP -->
+
+<section class="section">
+
+<div class="section-title reveal">
+
+<h2>Mapa Interativo</h2>
+
+<p>
+Veja a localização do Parque Natural Obô.
+</p>
+
+</div>
+
+<div class="map-box reveal">
+
+<iframe
+src="https://www.google.com/maps?q=Parque+Natural+Obô+São+Tomé&output=embed">
+</iframe>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="section">
+
+<div class="section-title reveal">
+
+<h2>História</h2>
+
+<p>
+Conheça parte da história ecológica e cultural.
+</p>
+
+</div>
+
+<div class="timeline reveal">
+
+<div class="timeline-item">
+
+<h3>1470</h3>
+
+<p>
+Descoberta das ilhas de São Tomé e Príncipe.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>1900</h3>
+
+<p>
+Expansão das roças de café em Nova Moca.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>Hoje</h3>
+
+<p>
+São Tomé tornou-se um dos principais destinos
+ecológicos da África.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- HOSPEDAGEM -->
+
+<section class="section" id="hospedagem">
+
+<div class="section-title reveal">
+
+<h2>Hospedagem & Gastronomia</h2>
+
+<p>
+Hotéis e restaurantes para apoiar sua experiência turística.
+</p>
+
+</div>
+
+<div class="gallery">
+
+<!-- OMALI -->
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/SXp6rkQb/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Omali Lodge</h3>
+
+<p>
+Hotel tropical premium próximo ao oceano.
+</p>
+
+<div class="buttons">
+
+<a href="https://www.omalilodge.com/"
+target="_blank">
+
+🌐 Site Oficial
+
+</a>
+
+<a href="https://maps.google.com/?q=Omali+Lodge+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PESTANA -->
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/tPkTwJpL/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Pestana São Tomé</h3>
+
+<p>
+Hotel moderno com vista para o oceano.
+</p>
+
+<div class="buttons">
+
+<a href="https://www.pestana.com/pt/hotel/pestana-sao-tome"
+target="_blank">
+
+🌐 Site Oficial
+
+</a>
+
+<a href="https://maps.google.com/?q=Pestana+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PAPA FIGO -->
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/wFnVkpcr/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Papa Figo</h3>
+
+<p>
+Restaurante sofisticado com gastronomia tropical.
+</p>
+
+<div class="buttons">
+
+<a href="https://maps.google.com/?q=Papa+Figo+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MONTE MAR -->
+
+<div class="card reveal">
+
+<img src="https://i.ibb.co/Y4nLRWNZ/imagem.jpg">
+
+<div class="card-content">
+
+<h3>Monte Mar</h3>
+
+<p>
+Experiência gastronômica costeira premium.
+</p>
+
+<div class="buttons">
+
+<a href="https://maps.google.com/?q=Monte+Mar+São+Tomé"
+target="_blank">
+
+📍 Localização
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>Viva São Tomé</h2>
+
+<p>
+Uma experiência cinematográfica focada
+na natureza e biodiversidade de
+São Tomé e Príncipe.
+</p>
+
+</footer>
+
+<!-- TOP BUTTON -->
+
+<button id="topBtn">
+↑
+</button>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+},1800);
+
+});
+
+/* COPY */
+
+function copyContact(number){
+
+navigator.clipboard.writeText(number);
+
+alert("Contacto copiado!");
+
+}
+
+/* TOP BUTTON */
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY > 400){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+/* GSAP */
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from(".hero-small",{
+y:80,
+opacity:0,
+duration:1
+});
+
+gsap.from(".hero h1",{
+y:120,
+opacity:0,
+duration:1.3
+});
+
+gsap.from(".hero h2",{
+y:80,
+opacity:0,
+duration:1.2,
+delay:0.3
+});
+
+gsap.from(".hero p",{
+y:60,
+opacity:0,
+duration:1,
+delay:0.5
+});
+
+gsap.from(".hero-buttons",{
+y:60,
+opacity:0,
+duration:1,
+delay:0.8
+});
+
+gsap.utils.toArray(".reveal").forEach((el)=>{
+
+gsap.from(el,{
+scrollTrigger:{
+trigger:el,
+start:"top 85%"
+},
+y:100,
+opacity:0,
+duration:1.2,
+ease:"power4.out"
+});
+
+});
+
+</script>
+
+</body>
+  </html>
